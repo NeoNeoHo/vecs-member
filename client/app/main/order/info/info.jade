@@ -1,0 +1,62 @@
+
+.page-header.h3 我的訂單紀錄{{order.order_id}}
+
+.page-header.h4 訂單編號
+table.table.table-hover.table-responsive
+	tr
+		th.col-md-2 訂單編號
+		th.col-md-2 統一編號
+		th.col-md-1 總價
+		th.col-md-2 狀態
+		th.col-md-2 購買日期
+	tr
+		td {{order.order_id}}
+		td {{order.invoice_prefix + order.invoice_no}}
+		td {{order.total}}
+		td {{order.order_status_name}}
+		td {{order.date_added | date: 'yyyy-MM-dd'}}
+div.text-center(ng-show="is_loading_table")
+	i.fa.fa-spinner.fa-pulse.fa-5x.fa-fw
+	span.sr-only Loading ...
+
+.page-header.h4 商品資訊
+table.table.table-hover.hidden-xs
+	tr
+		th.col-md-4 商品名稱
+		th.col-md-2 數量
+		th.col-md-2 總價
+	tr(ng-repeat="product in order.products")
+		td.cart-name
+			div
+				a(ng-href="{{product.href}}")
+					h5 {{product.name}}
+				h6(ng-repeat="option_product in product.option") {{option_product.value}}
+				h6(ng-show="product.reward") + 紅利 {{product.reward}} 點  
+		td.cart-quantity {{product.quantity}}
+		td.cart-total $ {{product.total}}
+table.table.table-hover.visible-xs
+	tr
+		th.col-xs-8.text-center 商品名稱
+		th.col-xs-4 數量
+	tr(ng-repeat-start="product in order.products")
+		td(rowspan="2").cart-name
+			div.col-xs-12
+				a(ng-href="{{product.href}}")
+					img.img-responsive(ng-attr-title="{{product.name}}", ng-src="{{product.image}}", style="width:100%", ng-loading)
+		td.cart-quantity 
+			h3 {{product.quantity}}件
+	tr
+		td(colspan="2") 
+			h3 $ {{product.spot_price + product.option_price}}
+				small /件
+			del.text-red(ng-show="product.price.unit_price > product.spot_price") 
+				| $ {{product.price.unit_price + product.option_price}} 
+	tr(ng-repeat-end)
+		td(colspan="3", style="border-top:0px solid black;")
+			div
+				a(ng-href="{{product.href}}")
+					h5 {{product.name}}
+				span(ng-repeat="option_product in product.option") {{option_product.value}}，
+				h6(ng-show="product.reward") + 紅利 {{product.reward}} 點  
+			div.text-green(ng-repeat="discount_condition in product.discount")
+				p(ng-hide="discount_condition.quantity <= product.quantity") 加{{discount_condition.quantity - product.quantity}}件，每件再折{{product.spot_price - discount_condition.price}}元

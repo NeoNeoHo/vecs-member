@@ -1,0 +1,46 @@
+
+.page-header.h3 滿意度評分
+
+table.table.table-hover.table-responsive
+	tr
+		th.col-md-2 訂單編號
+		th.col-md-2 統一編號
+		th.col-md-1 總價
+		th.col-md-2 狀態
+		th.col-md-2 購買日期
+	tr
+		td {{order.order_id}}
+		td {{order.invoice_prefix + order.invoice_no}}
+		td {{order.total}}
+		td {{order.order_status_name}}
+		td {{order.date_added | date: 'yyyy-MM-dd'}}
+div.text-center(ng-show="is_loading_table")
+	i.fa.fa-spinner.fa-pulse.fa-5x.fa-fw
+	span.sr-only Loading ...
+
+div.well(ng-show="text_is_reviewed")
+	h2 {{text_is_reviewed}}
+div.panel.panel-default(ng-show="order")
+	div.panel-body
+		form(name="product_review_form")
+			table.table.table-hover
+				tr
+					th.col-md-4 商品名稱
+					th.col-md-4 評分
+					th.col-md-4 使用感受
+				tr(ng-repeat="product in order.products")
+					td
+						div
+							a(ng-href="{{product.href}}")
+								h5 {{product.name}}
+							h6(ng-repeat="option_product in product.option") {{option_product.value}}
+					td 
+						span(uib-rating, max="10", ng-model="product.rate_pts", style="color:green", state-on="'glyphicon-heart'", state-off="'glyphicon-heart-empty'", name="rating_{{product.product_id}}", required)
+					td
+						div.form-group
+							input.form-control(type="text", name="review_{{product.product_id}}",ng-model="product.review",  ng-minlength="5", required)
+div.row.panel.panel-body
+	button.col-md-3.col-xs-7.btn.btn-vecs.btn-sharp.btn-lg.pull-right.text-justify(ng-click="submit_review()", ng-disabled="product_review_form.$invalid") 送出評分
+		span.glyphicon.glyphicon-circle-arrow-right.pull-right
+//- .well {{order.products}}
+.well {{product_review_form}}

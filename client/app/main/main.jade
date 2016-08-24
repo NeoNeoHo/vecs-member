@@ -1,0 +1,26 @@
+navbar
+br
+.container
+	.row
+		.col-md-2
+			.page-header.h3 我的資料	
+			ul
+				li(ui-sref-active='active')
+					a(ui-sref="member.edit.info") 編輯我的個人資料
+				li(ui-sref-active='active') 
+					a(ui-sref="member.edit.password") 更新我的密碼
+				li(ui-sref-active='active')
+					a(ui-sref="member.edit.address") 更新我的地址
+			.page-header.h3 我的訂單
+			ul
+				li(ui-sref-active='active')
+					a(ui-sref="member.order_history") 我的訂單記錄
+				li(ui-sref-active='active')
+					a(ui-sref="member.reward") 我的紅利點數
+				li(ui-sref-active='active')
+					a(ui-sref="member.member.seed") 我的種子歷程
+
+		.col-md-10
+			div(ui-view="")
+	
+//- footer

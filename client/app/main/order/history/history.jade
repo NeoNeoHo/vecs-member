@@ -1,0 +1,19 @@
+
+.page-header.h3 我的訂單紀錄
+table.table.table-hover.table-responsive
+	tr
+		th.col-md-2 訂單編號
+		th.col-md-2 統一編號
+		th.col-md-1 總價
+		th.col-md-2 狀態
+		th.col-md-2 購買日期
+	tr(ng-repeat="order in orders", ng-click="showInfo(order.order_id)", uib-tooltip="click to see detail", tooltip-popup-delay="2000")
+		td {{order.order_id}}
+		td {{order.invoice_prefix + order.invoice_no}}
+		td {{order.total}}
+		td {{order.order_status_name}}
+		td {{order.date_added | date: 'yyyy-MM-dd'}}
+div.text-center(ng-show="is_loading_table")
+	i.fa.fa-spinner.fa-pulse.fa-5x.fa-fw
+	span.sr-only Loading ...
+
