@@ -1,0 +1,148 @@
+.container
+	navbar
+.invite-page
+	.container-fluid
+		.row
+			.col-xs-12
+				.col-fullwidth-offset
+					img.img-full-width.hidden-xs(src="https://vecsgardenia.com/image/catalog/MEMBER/INVITE/slider.jpg")
+					img.img-full-width.visible-xs(src="https://vecsgardenia.com/image/catalog/MEMBER/INVITE/slider_s.jpg")
+			.col-xs-12.invite-banner-slogan.text-center
+				img.center-block(src="https://vecsgardenia.com/image/catalog/MEMBER/INVITE/logo.png")
+				h2.letter-spacing-wide 好友分享大募集 - 
+					| 限時紅利加倍送
+				h4 分享你愛的嘉丹妮爾給姐妹吧！
+				h4 推薦成功，立即獲得紅利購物金＊
+	.container.hidden-xs
+		.row
+			.col-md-10.col-md-offset-1.invite-box
+				p.bg-success {{invite_sent_msg}}
+				.form-inline
+					.row
+						.form-group.col-sm-6
+							label.sr-only(for='input_email') 輸入電子郵件地址：
+							input.input-lg.form-control.btn-sharp#input_email(ng-model="invite_email", type='email', name='input_email', placeholder='輸入電子郵件地址', style="width:100%") 
+						.form-group.col-sm-3
+							label.sr-only(for='input_name') 輸入好友暱稱：
+							input.input-lg.form-control.btn-sharp#input_email(ng-model="invite_name", type='text', name='input_name', placeholder='好友名字', style="width:100%") 
+						.col-sm-3
+							button.btn.btn-vecs.btn-lg.btn-sharp.letter-spacing-wide(style="width:100%", ng-disabled="isSendInviteMail", ng-click="sendInviteMail()") 邀請好友
+									span.glyphicon.glyphicon-circle-arrow-right.pull-right(ng-show="!isSendInviteMail")
+									i.fa.fa-spinner.fa-pulse.fa-1x.fa-fw.pull-right(ng-show="isSendInviteMail")
+									span.sr-only(ng-show="isSendInviteMail") Loading ...
+				hr
+				h4.text-center.text-muted(style="margin-top:-30px") 或
+				.form-inline
+					.row
+						.form-group.col-md-9.col-sm-9
+							.row
+								label.h4.col-md-3.col-sm-4(for='input_rc') 分享連結：
+								.col-md-9.col-sm-8.input-group
+									input.input-lg.form-control.input-copy.btn-sharp#input_rc(type='text', name='input_rc', value="{{rc_url}}", readonly, aria-describedby="addon-copy")
+									span.input-group-btn#addon-copy
+										button.btn.btn-vecs.btn-lg.btn-sharp( ngclipboard, data-clipboard-target="#input_rc") 複製
+						.col-md-3.col-sm-3
+							a(href="#", socialshare, socialshare-provider="facebook", socialshare-via="281376222054197", socialshare-type="feed", socialshare-caption="{{viaFacebook.caption}}",socialshare-description="{{viaFacebook.description}}", socialshare-text="{{viaFacebook.text}}", socialshare-url="{{rc_url}}", socialshare-media="{{viaFacebook.media}}")
+								button.btn.btn-primary.btn-lg.btn-sharp(style="width:100%", ng-click="shareFB()") Facebook 分享
+	.container
+		.how-it-works
+			h3.text-center.how-it-works-heading 分享很容易
+			.row
+				.col-sm-4.col-space-top
+					.row
+						.col-xs-3.text-right
+							i.fa.fa-bullhorn.fa-3x.text-vecs(aria-hidden="true")
+						.col-xs-8
+							p
+								kbd.bg-orange {{rc_url}} 
+							p 複製此段連結，邀請好友點擊並加入會員。
+				.col-sm-4.col-space-top
+					.row
+						.col-xs-3.text-right
+							i.fa.fa-shopping-cart.fa-3x.text-vecs(aria-hidden="true")
+						.col-xs-8
+							p 當他們首次購物達成以下條件：
+							li 選擇信用卡付款
+							li 且結帳金額超過$1000元
+
+				.col-sm-4.col-space-top
+					.row
+						.col-xs-3.text-right
+							i.fa.fa-leaf.fa-3x.text-vecs(aria-hidden="true")
+						.col-xs-8
+							p 嘉丹妮爾將回饋您的好友200元紅利，同時也立即回饋您紅利點數：
+							p 邀請第1人成功，贈送100元紅利； 
+							p 邀請第2人成功，贈送150元紅利； 
+							p 邀請第3人~第5人，贈送200元紅利； 
+							p 邀請第6人以上，贈送300元紅利。
+							p.text-muted 邀請上限20人，嘉丹妮爾保有活動修正的權利。	
+	hr
+	.container
+		.row
+			.col-sm-6.col-xs-12
+				div.hidden-xs
+					h3.text-center.how-it-works-heading.bg-orange 紅利加碼限時活動
+					h4 加碼期間：10/25~11/12
+					h4 紅利加碼：
+					h4 邀請到第3人，單筆紅利加碼1.5倍。
+					h4 邀請到第6人，單筆紅利加碼2倍＋稻米保濕面膜1盒＋微笑小提袋。
+					h4 邀請到第10人，送稻米保濕面膜3盒＋嘉丹妮爾時尚購物袋。
+					p.text-muted 滿額小禮物統一於11/17寄出 :)
+				div.visible-xs
+					h3.text-center.how-it-works-heading.bg-orange 紅利加碼限時活動
+					p 加碼期間：10/25~11/6
+					p 紅利加碼：
+						li 邀請到第3人，單筆紅利加碼1.5倍。
+						li 邀請到第6人，單筆紅利加碼2倍＋稻米保濕面膜1盒＋微笑小提袋。
+						li 邀請到第10人，送稻米保濕面膜3盒＋嘉丹妮爾時尚購物袋。
+					p.text-muted 滿額小禮物統一於11/17寄出 :)
+			.col-sm-6.col-xs-12.pull-left
+				img.img-full-width.hidden-xs(src="https://vecsgardenia.com/image/catalog/MEMBER/INVITE/referral_campaign.png")
+				img.img-full-width.visible-xs(src="https://vecsgardenia.com/image/catalog/MEMBER/INVITE/referral_campaign_s.png")
+
+
+	.container.visible-xs.invite-box.col-space-top
+		.row
+			a(style="width:100%", href="{{mailto}}")
+				button.btn.btn-danger.btn-lg.btn-sharp.bg-orange(style="width:100%") 透過電子郵件邀請好友
+		hr
+		h4.text-center.text-muted(style="margin-top:-30px") 或
+		.row
+			button.btn.btn-success.btn-lg.btn-sharp(style="width:100%", ng-click="isCollapsedLine = !isCollapsedLine") Line 分享
+			div(uib-collapse="isCollapsedLine")
+				.well
+					h4.text-center 編輯訊息內容
+					textarea.form-control(rows="7", ng-value="lineto", ng-model="lineto")
+					a(ng-href="http://line.me/R/msg/text/?{{lineto}}", style="width:100%")
+						button.btn.btn-success.btn-sharp(style="width:100%") Line 給好友
+		.row
+			a(href="#", socialshare, socialshare-provider="facebook", socialshare-via="281376222054197", socialshare-type="feed", socialshare-caption="{{viaFacebook.caption}}",socialshare-description="{{viaFacebook.description}}", socialshare-text="{{viaFacebook.text}}", socialshare-url="{{rc_url}}", socialshare-media="{{viaFacebook.media}}")
+				button.btn.btn-primary.btn-lg.btn-sharp(style="width:100%") Facebook 分享
+		h4.text-center
+			small 分享連結
+		.row
+			input.input-lg.form-control.input-copy.btn-sharp#input_rc2(type='text', name='input_rc', value="{{rc_url}}", readonly, aria-describedby="addon-copy")
+			button.btn.btn-default.btn-lg.btn-sharp(ngclipboard, data-clipboard-target="#input_rc2" style="width:100%") 複製連結
+
+	.container
+		.status-section
+			h3.text-center.how-it-works-heading 您有
+				span(style="color:red") {{num_friend_succeed}}
+				| 位好友
+			h3.text-center.how-it-works-heading 
+				i.fa.fa-heart-o.fa-1x(style="color:red")
+				| 愛上了嘉丹妮爾
+			div
+				div(ng-repeat="friend in registered_coll")
+					.row(ng-class="{'friend_succeed': friend.success, 'friend_not_succeed': !friend.success}")
+						.col-xs-2
+							img.img-circle(src="https://a1.muscache.com/airbnb/static/user_pic-50x50-b9fc4fb228d82e36537369c2d8f043cd.png" ng-show="!friend.success" style="width:5k0px")
+							img.img-circle(src="https://vecsgardenia.com/image/catalog/LOGO/icon.png" ng-show="friend.success" style="width:50px")
+						.col-sm-6.col-xs-6(style="margin-top:15px")
+							span {{friend.firstname}} {{friend.email}}
+						.col-sm-4.col-xs-4.text-right(style="margin-top:15px")
+							span(ng-show="!friend.success") 尚未購物成功
+							span(ng-show="friend.success") 購物成功
+				hr
+.row(style="margin-top:30px")
+footer

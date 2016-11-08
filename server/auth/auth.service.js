@@ -31,26 +31,38 @@ export function isAuthenticated() {
 			}
 			validateJwt(req, res, next);
 		})
+		// When Fail to validate JWT, res with status 401
+		.use(function(err, req, res, next) {
+			if (err.name === 'UnauthorizedError') {
+				res.status(401).send(err);
+			} else {
+				next();
+			}
+		})
 		// Attach user to request
 		.use(function(req, res, next) {
 			// console.log(req.user);
 			mysql_pool.getConnection(function(err, connection){
-				if(err) handleError(res)(err);
+				if(err) {
+					connection.release();
+					res.status(401).send(err);
+				}
 				var session_id = req.user.session_id || '';
-				var role = req.user.role || 'user';
 				connection.query('select * from oc_customer where customer_id = ?',[req.user._id], function(err, rows) {
 					connection.release();
-					if(err) next(err);
+					if(err) res.status(400).send(err);
 					if(!rows[0]) return res.status(401).end();
 					if(rows) {
 						req.user = {
-							role: role, 
+							role: 'user', 
 							_id: rows[0].customer_id,
 							customer_group_id: rows[0].customer_group_id,
 							address_id: rows[0].address_id,
 							email: rows[0].email,
+							firstname: rows[0].firstname,
+							address_id: rows[0].address_id,
 							session_id: session_id,
-							firstname: rows[0].firstname
+							telephone: rows[0].telephone || 0
 						};
 						// console.log(req.user);
 						next();
@@ -64,7 +76,6 @@ export function isAuthenticated() {
  * Checks if the user role meets the minimum requirements of the route
  */
 export function hasRole(roleRequired) {
-	
 	if (!roleRequired) {
 		throw new Error('Required role needs to be set');
 	}
@@ -72,10 +83,6 @@ export function hasRole(roleRequired) {
 	return compose()
 		.use(isAuthenticated())
 		.use(function meetsRequirements(req, res, next) {
-			console.log(roleRequired);
-			console.log(req.user.role);
-			console.log(config.userRoles.indexOf(req.user.role));
-			console.log(config.userRoles.indexOf(roleRequired));
 			if (config.userRoles.indexOf(req.user.role) >=
 					config.userRoles.indexOf(roleRequired)) {
 				next();
@@ -90,7 +97,7 @@ export function hasRole(roleRequired) {
  */
 export function signToken(id, role) {
 	return jwt.sign({ _id: id, role: role}, config.secrets.session, {
-		expiresIn: 60 * 60 * 500
+		expiresIn: 60 * 60 * 5
 	});
 }
 

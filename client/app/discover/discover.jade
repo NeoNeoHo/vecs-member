@@ -11,10 +11,11 @@ navbar
 			button.btn.btn-vecs.btn-lg.center-block(ng-disabled="discover_form.$invalid", ng-class="{'btn-danger': discover_form.$invalid}", ng-click="submitDiscover()") 送出
 			//- button.btn(ng-click="test()") 測試用送出
 	div(ng-show="customer_solution")
-		.page-header.h2 建議保養系列
-		p {{customer_solution.desc}}
-		p {{customer_solution.morning_desc}}
-		p {{customer_solution.night_desc}}
+		.page-header.h4 建議保養系列
+		.jumbotron.text-center {{customer_solution.desc}}
+		.well {{customer_solution.morning_desc}}
+		.well {{customer_solution.night_desc}}
+		p.text-danger(ng-show="customer_solution.notice") {{customer_solution.notice}}
 		.page-header.h4 
 		.panel.panel-default
 			.panel-body
@@ -25,14 +26,14 @@ navbar
 								p {{$index+1}} {{product.name}}-{{product.desc}}
 							.panel-body
 								a(ng-href="https://vecsgardenia.com/?route=product/product&product_id={{product.product_id}}")
-									img.img-thumbnail(style="width:100%",ng-src="https://vecsgardenia.com/image/catalog/PRODUCT_THUMB/{{product.model}}.jpg", spinkit-image-preloader='rotating-plane-spinner')
+									img.img-rounded(style="width:100%",ng-src="https://vecsgardenia.com/image/catalog/PRODUCT_THUMB/{{product.model}}.jpg", spinkit-image-preloader='rotating-plane-spinner')
 					.col-md-3.col-xs-6(ng-show="customer_solution.acne")
 						div.panel.panel-danger
 							.panel-heading
 								p {{customer_solution.acne.name}}-{{customer_solution.acne.desc}}
 							.panel-body
 								a(ng-href="https://vecsgardenia.com/?route=product/product&product_id={{customer_solution.acne.product_id}}")
-									img.img-thumbnail(style="width:100%",ng-src="https://vecsgardenia.com/image/catalog/PRODUCT_THUMB/{{customer_solution.acne.model}}.jpg", spinkit-image-preloader='rotating-plane-spinner')
+									img.img-rounded(style="width:100%",ng-src="https://vecsgardenia.com/image/catalog/PRODUCT_THUMB/{{customer_solution.acne.model}}.jpg", spinkit-image-preloader='rotating-plane-spinner')
 				.row(ng-show="customer_solution.specials")
 					.col-md-12
 						div.panel.panel-danger
@@ -40,7 +41,7 @@ navbar
 								p {{customer_solution.specials.desc}}
 							.panel-body
 								div.row
-									.col-md-3(ng-repeat="product in customer_solution.specials.products")
+									.col-md-3.col-xs-6(ng-repeat="product in customer_solution.specials.products")
 										a(ng-href="https://vecsgardenia.com/?route=product/product&product_id={{product.product_id}}")
-											img.img-thumbnail(style="width:100%",ng-src="https://vecsgardenia.com/image/catalog/PRODUCT_THUMB/{{product.model}}.jpg", spinkit-image-preloader='rotating-plane-spinner')
-footer
+											img.img-rounded(style="width:100%",ng-src="https://vecsgardenia.com/image/catalog/PRODUCT_THUMB/{{product.model}}.jpg", spinkit-image-preloader='rotating-plane-spinner')
+//- footer

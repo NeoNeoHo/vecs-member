@@ -25,6 +25,9 @@ module.exports = function(config) {
       'client/bower_components/angular-scroll/angular-scroll.js',
       'client/bower_components/angular-busy/dist/angular-busy.js',
       'client/bower_components/angular-spinkit/build/angular-spinkit.js',
+      'client/bower_components/clipboard/dist/clipboard.js',
+      'client/bower_components/ngclipboard/dist/ngclipboard.js',
+      'client/bower_components/angular-socialshare/dist/angular-socialshare.min.js',
       'client/bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'client/app/app.js',

@@ -13,11 +13,13 @@ angular.module('webApp', [
   'ui.bootstrap',
   'validation.match',
   'duScroll',
-  'angular-spinkit'
+  'angular-spinkit',
+  'ngclipboard',
+  '720kb.socialshare'
 ])
   .config(function($urlRouterProvider, $locationProvider) {
     $urlRouterProvider
-      .otherwise('/');
+      .otherwise('/discover');
 
     $locationProvider.html5Mode(true);
   });

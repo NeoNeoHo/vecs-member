@@ -1,0 +1,103 @@
+.bg-orange {
+  background-color: #f4512c;
+  color: white;
+}
+
+.bg-black {
+  background-color: black;
+  color: white;
+}
+
+.invite-page{
+
+}
+
+@media(min-width: 320px){
+  .invite-banner-slogan {
+    position: relative;
+    top: -330px;
+    color: white;
+    margin-bottom: -300px;
+  }
+  .invite-box {
+    position: relative;
+    padding: 45px;
+    background-color: #f5f5f5;
+    border:solid 1px #8b964a;
+  }
+  .how-it-works {
+    position: relative;
+  }
+}
+
+@media(min-width: 768px){
+  .invite-banner-slogan {
+    position: relative;
+    top: -250px;
+    color: white;
+    margin-bottom: -100px;
+  }
+  .invite-box {
+    position: relative;
+    top: -120px;
+    padding: 45px;
+    background-color: #f5f5f5;
+    border:solid 1px #8b964a;
+  }
+  .how-it-works {
+    position: relative;
+    top: -60px;
+  }
+}
+
+@media (min-width: 992px) {
+  .invite-banner-slogan {
+    position: relative;
+    top: -350px;
+    color: white;
+    margin-bottom: -250px;
+  }
+}
+
+.letter-spacing-wide {
+  letter-spacing: 0.1em;
+}
+
+.invite-banner-slogan p {
+  line-height: 2em;
+  margin: 0px;
+  letter-spacing: 0.1em;
+}
+
+
+.how-it-works p {
+  line-height: 2em;
+  margin: 0px;
+}
+
+.how-it-works-heading {
+  @extend .letter-spacing-wide;
+  margin-bottom: 24px;
+}
+
+.col-space-top {
+  margin-top: 24px;
+}
+
+.status-section-email {
+  padding-left: 12px;
+}
+.hero-unit.invite-cover {
+  padding-bottom: 125px;
+}
+
+.input-copy {
+  border-style: dashed;
+  border-right: 0;
+}
+.invite-page .friend_succeed {
+  color: #8b964a;
+}
+.invite-page .friend_not_succeed {
+  @extend .text-muted;
+}

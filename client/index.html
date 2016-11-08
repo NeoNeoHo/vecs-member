@@ -7,10 +7,18 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <base href="/">
-    <title></title>
-    <meta name="description" content="">
+    <title ng-bind="($title || 'Vecs Gardenia')">Vecs Gardenia</title>
+    <meta name="description" content="用一顆實在的心 創造沒有負擔的美麗。嘉丹妮爾，沒有負擔的美麗。無人工香精、無色素、無酒精、無化學刺激物、不做動物實驗">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link href="https://vecsgardenia.com/image/catalog/LOGO/icon.png" rel="icon">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <!-- Manual add Css and Javascript -->
+    <!-- <link rel="stylesheet" href="assets/stylesheet/megamenu.css"> -->
+    <link rel="stylesheet" href="https://vecsgardenia.com/catalog/view/theme/pav_fashion/stylesheet/vecs-stylesheet/composite.all.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!-- endManual -->
+
     <!-- build:css(client) app/vendor.css -->
       <!-- bower:css -->
       <link rel="stylesheet" href="bower_components/angular-busy/dist/angular-busy.css" />
@@ -24,6 +32,10 @@
     <!-- endbuild -->
   </head>
   <body ng-app="webApp">
+
+
+
+  
     <!--[if lt IE 7]>
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -38,7 +50,7 @@
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-      ga('create', 'UA-XXXXX-X');
+      ga('create', 'UA-48457616-1');
       ga('send', 'pageview');
     </script>
 
@@ -61,21 +73,28 @@
       <script src="bower_components/angular-scroll/angular-scroll.js"></script>
       <script src="bower_components/angular-busy/dist/angular-busy.js"></script>
       <script src="bower_components/angular-spinkit/build/angular-spinkit.js"></script>
+      <script src="bower_components/clipboard/dist/clipboard.js"></script>
+      <script src="bower_components/ngclipboard/dist/ngclipboard.js"></script>
+      <script src="bower_components/angular-socialshare/dist/angular-socialshare.min.js"></script>
       <!-- endbower -->
     <!-- endbuild -->
 
+
+      <script type="text/javascript" src="https://vecsgardenia.com/catalog/view/javascript/common.js"></script>
     <!-- build:js(.tmp) app/app.js -->
       <script src="app/app.js"></script>
       <!-- injector:js -->
       <script src="app/admin/admin.module.js"></script>
       <script src="components/auth/auth.module.js"></script>
       <script src="components/util/util.module.js"></script>
-      <script src="app/checkout/success/success.controller.js"></script>
+      <script src="app/invite/invite.controller.js"></script>
       <script src="app/Factory/Location/Location.service.js"></script>
+      <script src="app/Factory/Megamenu/Megamenu.service.js"></script>
       <script src="app/Factory/Order/Order.service.js"></script>
       <script src="app/Factory/Payment/Payment.service.js"></script>
       <script src="app/Factory/Product/Product.service.js"></script>
       <script src="app/Factory/Promotion/Promotion.service.js"></script>
+      <script src="app/Factory/Referral/Referral.service.js"></script>
       <script src="app/Factory/Reward/Reward.service.js"></script>
       <script src="app/Factory/Shipment/Shipment.service.js"></script>
       <script src="app/Filter/encodeURI/encodeURI.filter.js"></script>
@@ -87,17 +106,10 @@
       <script src="app/Factory/Cart/Cart.service.js"></script>
       <script src="app/admin/admin.router.js"></script>
       <script src="app/app.constant.js"></script>
-      <script src="app/checkout/checkout.controller.js"></script>
-      <script src="app/checkout/checkout.js"></script>
-      <script src="app/checkout/failure/failure.controller.js"></script>
-      <script src="app/checkout/failure/failure.js"></script>
-      <script src="app/checkout/final_confirm/final_confirm.js"></script>
-      <script src="app/checkout/product_check/product_check.js"></script>
-      <script src="app/checkout/shipment_payment/shipment_payment.js"></script>
-      <script src="app/Factory/Config/Config.service.js"></script>
-      <script src="app/checkout/success/success.js"></script>
       <script src="app/discover/discover.controller.js"></script>
       <script src="app/discover/discover.js"></script>
+      <script src="app/Factory/Config/Config.service.js"></script>
+      <script src="app/invite/invite.js"></script>
       <script src="app/main/main.controller.js"></script>
       <script src="app/main/main.js"></script>
       <script src="app/main/order/history/history.controller.js"></script>

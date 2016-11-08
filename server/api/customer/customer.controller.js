@@ -15,7 +15,7 @@ import db_config from '../../config/db_config.js';
 import api_config from '../../config/api_config.js';
 import unserialize from 'locutus/php/var/unserialize';
 import serialize from 'locutus/php/var/serialize';
-import request from 'request';
+import q from 'q';
 var mysql_pool = db_config.mysql_pool;
 var mysql_config = db_config.mysql_config;  
 
@@ -43,7 +43,10 @@ export function update(req, res) {
 	var info = req.body;
 	// console.log(info);
 	mysql_pool.getConnection(function(err, connection){
-		if(err) handleError(res, err);
+		if(err) {
+			connection.release();
+			handleError(res, err);
+		}
 		connection.query('update '+ mysql_config.db_prefix + 'customer set ? where customer_id = ? ',[info, customer_id] , function(err, rows) {
 			connection.release();
 			if(err) handleError(res, err);
@@ -56,7 +59,10 @@ export function update(req, res) {
 export function get(req, res) {
 	var customer_id = req.params.id;
 	mysql_pool.getConnection(function(err, connection) {
-		if(err) handleError(res, err);
+		if(err) {
+			connection.release();
+			handleError(res, err);
+		}
 		connection.query('SELECT * from '+ mysql_config.db_prefix + 'customer where customer_id = ? ',[customer_id] , function(err, rows) {
 			connection.release();
 			if(err) handleError(res, err);
@@ -93,3 +99,40 @@ export function clearCart(req, res) {
 	console.log('clearCart');
 	res.redirect(api_config.DIR_PATH+'index.php?route=checkout/cart/clear');
 }
+
+var getNewerCustomer = function(customer_id) {
+	var defer = q.defer;
+	mysql_pool.getConnection(function(err, connection) {
+		if(err) {
+			connection.release();
+			defer.reject(err);
+		}
+		connection.query('SELECT * from '+ mysql_config.db_prefix + 'customer where customer_id > ? ',[customer_id] , function(err, rows) {
+			connection.release();
+			if(err) {
+				defer.reject(err);
+			}
+			defer.resolve(rows);
+		});
+	});
+	return defer.promise;
+};
+
+var getLatestCustomer = function() {
+	var defer = q.defer;
+	mysql_pool.getConnection(function(err, connection) {
+		if(err) {
+			connection.release();
+			defer.reject(err);
+		}
+		connection.query('SELECT * from '+ mysql_config.db_prefix + 'customer order by customer_id desc limit 1 ', function(err, rows) {
+			connection.release();
+			if(err) {
+				defer.reject(err);
+			}
+			defer.resolve(rows);
+		});
+	});
+	return defer.promise;
+};
+
