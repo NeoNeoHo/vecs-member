@@ -9,9 +9,9 @@ angular.module('webApp')
 			$scope.referral_code = data;
 			$scope.rc_url = $scope.rc_login_url + $scope.referral_code;
 			$scope.mailto = 'mailto:?subject=與好姐妹一起加入嘉丹妮爾&body=沒有負擔的美麗－嘉丹妮爾，接受我的邀請加入會員，你的第一筆訂單可以享有85折，購物成功後還可再得200元紅利折抵喔！ ' + encodeURIComponent($scope.rc_url);
-			$scope.lineto = '從我的連結買東西可以有一次85折：） 購物成功還可以讓我們一起獲得100~300元購物金喔' + $scope.rc_url;
+			$scope.lineto = '跟你分享我喜歡的保養品牌-嘉丹妮爾，使用我的連結第一次購物可以享85折優惠：）還可以再賺紅利購物金喔！' + $scope.rc_url;
 			$scope.viaFacebook = {
-				description: '從我的連結買東西可以有一次85折：） 購物成功還可以讓我們一起獲得100~300元購物金喔',
+				description: '跟你分享我喜歡的保養品牌-嘉丹妮爾，使用我的連結第一次購物可以享85折優惠：）還可以再賺紅利購物金喔！',
 				caption: '嘉丹妮爾・好友分享!',
 				text: '好友分享月',
 				media: 'https://vecsgardenia.com/image/catalog/MEMBER/INVITE/FB_invite_5.jpg'
